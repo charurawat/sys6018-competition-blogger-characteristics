@@ -219,25 +219,44 @@ colnames(data_one)[3] <- "yearpub"
 train_one <- data_one[!is.na(age)]
 test_one <- data_one[is.na(age)]
 
+# model 1 
 # Training model on MultiLinear Regression and implementing k-fold cross-validation
 train.control <- trainControl(method = "cv", number = 5) # k-folds = 5
 # Train the model
-model1 <- train(age ~., data = train_one, method = "lm",trControl = train.control) # multilinear regression
+model1 <- train(age ~., data = train_one, method = "lm",trControl = train.control) # multilinear regression all variables
 # Summarize the results
 print(model1)
 # predict on test
 prediction1 <- predict(model1,newdata = test_one)
 test_id <- read.csv('test.csv',stringsAsFactors = F)
-solution <- data.frame(test_id$user.id)
-solution$age = prediction1
-solution$age = trunc(solution$age)
-output1 = solution %>% group_by(user.id) %>% summarise(age = min(age))
+solution1 <- data.frame(test_id$user.id)
+solution1$age = prediction1
+solution1$age = trunc(solution1$age)
+output1 = solution1 %>% group_by(user.id) %>% summarise(age = min(age))
 
 # write to csv
 write.table(output1, file = 'submission1.csv', col.names = c('user.id', 'age'), sep = ',', row.names = F)
 
-## Lasso Model
-x1 <- data.matrix(train_one[,-3])
+# model 2
+# Training model on MultiLinear Regression and implementing k-fold cross-validation
+train.control <- trainControl(method = "cv", number = 5) # k-folds = 5
+# Train the model
+model2 <- train(age ~-still-start-someth-second-reason-never-made-long-life-left-hard-happen-face-doesnt-decid-better-best-anyon-also-alreadi-almost-hour-word-end, data = train_one, method = "lm",trControl = train.control) # multilinear regression excl some variables
+# Summarize the results
+print(model2)
+# predict on test
+prediction2 <- predict(model2,newdata = test_one)
+solution2 <- data.frame(test_id$user.id)
+solution2$age = prediction2
+solution2$age = trunc(solution2$age)
+output2 = solution2 %>% group_by(user.id) %>% summarise(age = min(age))
+
+# write to csv
+write.table(output2, file = 'submission2.csv', col.names = c('user.id', 'age'), sep = ',', row.names = F)
+
+
+# Model 3 -  Lasso Model
+x1 <- data.matrix(train_one[,-4])
 y1 <- train_one$age
 
 lasso.lambda <- cv.glmnet(y=y1, x=x1, nfolds = 7)
@@ -245,14 +264,14 @@ coef(lasso.lambda)
 
 #blog.lasso1 <- glmnet(x, y, alpha = 1)
 
-prediction1 <- predict(lasso.lambda, newx = data.matrix(test_one))
+prediction3 <- predict(lasso.lambda, newx = data.matrix(test_one))
 # prediction1 <- predict(blog.lasso1, newx = test_one)
 test_age <- as.data.frame(cbind(test_one$user.id,pred))
 names(test_age) <- c('user.id', 'age')
 
-output2 <- test_age %>% 
+output3 <- test_age %>% 
   group_by(user.id) %>% 
   summarise(age = mean(age))
 
 # write to csv
-write.table(output2, file = 'submission3.csv', col.names = c('user.id', 'age'), sep = ',', row.names = F)
+write.table(output3, file = 'submission3.csv', col.names = c('user.id', 'age'), sep = ',', row.names = F)
