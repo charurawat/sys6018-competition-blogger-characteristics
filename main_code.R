@@ -235,3 +235,24 @@ output1 = solution %>% group_by(user.id) %>% summarise(age = min(age))
 
 # write to csv
 write.table(output, file = 'output1.csv', col.names = c('user.id', 'age'), sep = ',', row.names = F)
+
+## Lasso Model
+x1 <- data.matrix(train_one[,-3])
+y1 <- train_one$age
+
+lasso.lambda <- cv.glmnet(y=y1, x=x1, nfolds = 7)
+coef(lasso.lambda)
+
+#blog.lasso1 <- glmnet(x, y, alpha = 1)
+
+prediction1 <- predict(lasso.lambda, newx = data.matrix(test_one))
+# prediction1 <- predict(blog.lasso1, newx = test_one)
+test_age <- as.data.frame(cbind(test_one$user.id,pred))
+names(test_age) <- c('user.id', 'age')
+
+output <- test_age %>% 
+  group_by(user.id) %>% 
+  summarise(age = mean(age))
+
+# write to csv
+write.table(output, file = 'output1.csv', col.names = c('user.id', 'age'), sep = ',', row.names = F)
