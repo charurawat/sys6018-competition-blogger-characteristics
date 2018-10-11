@@ -4,8 +4,6 @@ SYS 6018 - Kaggle Competition ; Predicting Blogger Age
 "
 
 # ----------------------------------------------------------------------------------------------------------------------------------------------------
-# Set Working Directory 
-setwd('F:/UVA/fall_term/sys_6018/Competitions/3_Blogger')
 
 # Load necessary packages
 library(ggplot2)
@@ -147,7 +145,7 @@ raw_text %>%
 
 # Remove words and numbers from text
 data(stop_words)
-custom_stop_words <- bind_rows(data_frame(word = c("miss","urllink","nbsp","â","ã"), 
+custom_stop_words <- bind_rows(data_frame(word = c("miss","urllink","nbsp","Ã¢","Ã£"), 
                                           lexicon = c("custom")), 
                                stop_words)
 usenet_words <- raw_text %>%
