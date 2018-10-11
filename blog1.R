@@ -28,7 +28,7 @@ tdata <- rbind(train,test)
 text_corpus <- Corpus(VectorSource(tdata$text))
 # inspect(text_corpus[1:4])
 # print(lapply(text_corpus[1:2], as.character))
-
+ 
 # text cleaning with the tm library
 text.clean = tm_map(text_corpus, stripWhitespace)                          # remove extra whitespace
 text.clean = tm_map(text.clean, removeNumbers)                      # remove numbers
