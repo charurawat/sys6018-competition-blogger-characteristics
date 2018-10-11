@@ -234,7 +234,7 @@ solution$age = trunc(solution$age)
 output1 = solution %>% group_by(user.id) %>% summarise(age = min(age))
 
 # write to csv
-write.table(output, file = 'output1.csv', col.names = c('user.id', 'age'), sep = ',', row.names = F)
+write.table(output1, file = 'submission2.csv', col.names = c('user.id', 'age'), sep = ',', row.names = F)
 
 ## Lasso Model
 x1 <- data.matrix(train_one[,-3])
@@ -250,9 +250,9 @@ prediction1 <- predict(lasso.lambda, newx = data.matrix(test_one))
 test_age <- as.data.frame(cbind(test_one$user.id,pred))
 names(test_age) <- c('user.id', 'age')
 
-output <- test_age %>% 
+output2 <- test_age %>% 
   group_by(user.id) %>% 
   summarise(age = mean(age))
 
 # write to csv
-write.table(output, file = 'output1.csv', col.names = c('user.id', 'age'), sep = ',', row.names = F)
+write.table(output2, file = 'submission3.csv', col.names = c('user.id', 'age'), sep = ',', row.names = F)
