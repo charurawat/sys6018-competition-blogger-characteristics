@@ -26,7 +26,7 @@ Our team learned a lot while working together on this Kaggle competition. While 
 
 Charu was in charge of initially implementing the algorithm and was the main coder of the group. She figured out how to get from the frequency counts of the words to the tf-idf matrix, and subsequently use the appropriate words needed for the feature engineering of the model.
 
-Bowei was tasked with refining the model using his own perspective on the model selection. He was able to select and choose the variables and words that he thought were most informative in relation to predicting the final age of the user.
+Bowei was tasked with refining the model using his own perspective on the model selection. He was able to select and choose the variables and words that he thought were most informative in relation to predicting the final age of the user. He also tried lasso in addition to the linear regressions. 
 
 Ashwanth was the administrative lead on the project, pulling together the submission and taking care of the paperwork. Additionally, he made a few models utilizing feature engineering and building off the initial work that Charu and Bowei completed.
 
