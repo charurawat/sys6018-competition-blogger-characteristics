@@ -234,7 +234,7 @@ solution$age = trunc(solution$age)
 output1 = solution %>% group_by(user.id) %>% summarise(age = min(age))
 
 # write to csv
-write.table(output1, file = 'submission2.csv', col.names = c('user.id', 'age'), sep = ',', row.names = F)
+write.table(output1, file = 'submission1.csv', col.names = c('user.id', 'age'), sep = ',', row.names = F)
 
 ## Lasso Model
 x1 <- data.matrix(train_one[,-3])
