@@ -24,7 +24,7 @@ This type of problem can be resembled in many other scenarios as well. For examp
   Team Roles:
 Our team learned a lot while working together on this Kaggle competition. While none of us have extensive backgrounds in text-mining, we spent time to deliver a product representative of our diligent efforts. The steps of this project included collaborating and brainstorming an initial model, taking some time to think about what we needed for our following submissions, understanding the algorithm behind the tf-idf approach, and implementing the steps needed to solve the problem. This proved to be a challenging, yet intriguing task for us and we all worked with our individual strengths to produce our deliverable. The roles were discussed before the start of the project, and were subsequently altered as our thinking and understanding of the problem changed.
 
-Charu was in charge of initially implementing the algorithm and was the main coder of the group. She figured out how to get from the frequency counts of the words to the tf-idf matrix, and subsequently use the appropriate words needed for the feature engineering of the model.
+Charu was in charge of implementing the text mining methods and performed exploratory data analysis on the dataset. She figured out how to get from the frequency counts of the words to the tf-idf matrix, and subsequently use the appropriate words needed for the feature engineering of the model.
 
 Bowei was tasked with refining the model using his own perspective on the model selection. He was able to select and choose the variables and words that he thought were most informative in relation to predicting the final age of the user. He also tried lasso in addition to the linear regressions. 
 
